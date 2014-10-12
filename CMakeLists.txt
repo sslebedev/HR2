@@ -30,22 +30,7 @@ endif ()
 
 #-------------------------------------------------------------------------------------------
  
-#
-## Adding the library CGNS
-#set(CGNS_PATH "C:/SDK/cgns")
-#include_directories(${CGNS_PATH}/include/) # include headers
-#link_directories(${CGNS_PATH}/lib/) # include lib
-#link_libraries(gdiplus.lib)
-# 
-## Adding the library PISTON
-#include_directories("C:/SDK/PISTON") # include headers
-# 
-## Adding the packages CUDA
-#find_package(CUDA QUIET REQUIRED)
-#if(CUDA_FOUND)
-#  set(CUDA_NVCC_FLAGS -gencode arch=compute_30,code=sm_30 CACHE STRING "" FORCE)
-#  set(CUDA_NVCC_FLAGS_DEBUG -G CACHE STRING "" FORCE)
-#endif()
+link_libraries(gdiplus.lib)
 
 #-------------------------------------------------------------------------------------------
  
@@ -76,4 +61,4 @@ ENDIF (MSVC)
 
 set(ALL_FILES ${SOURCE_MAIN})
 set(ALL_FILES ${ALL_FILES} ${HEADER_UNIVERSAL} ${SOURCE_UNIVERSAL})
-add_executable(${APP_NAME} ${ALL_FILES})
+add_executable(${APP_NAME} WIN32 ${ALL_FILES})

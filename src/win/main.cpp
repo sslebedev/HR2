@@ -51,8 +51,6 @@
 #define   MAIN_TITLE                "Hand writing recognition"
 #define   MAIN_CLASS_NAME           "HandWrRecWindowClass"
 
-#define   IABS(aaa)       (((aaa)>=0)?(aaa):(-(aaa)))
-
 // Define next line only for deep debuf performance evaluation!
 //#define _PERFORMANCE_CHECK_
 
@@ -395,7 +393,7 @@ static void _updateMouse(const V2d *pos, const MouseState state)
           s_strRecognized[s_strRecognizedLen + 0] = letter;
           s_strRecognized[s_strRecognizedLen + 1] = 0;
           s_strRecognizedLen++;
-          s_letter = PLineGetLetterFromLearningSet(indexLetter);
+          //s_letter =  PLineGetLetterFromLearningSet(indexLetter);
 
           // !!!!!!!!!
           //if (letter == '1')
@@ -875,10 +873,10 @@ static void _testSaveLetterSetTar(LetterSet *letterSet)
 
   for (i = 0; i < letterSet->m_numLetters; i++)
   {
-    desc = PLineGetLetterFromLearningSet(i);
+/*    desc = PLineGetLetterFromLearningSet(i);
     if (desc->m_letter != '6')
       continue;
-    RenderTarToScreen(desc->m_polyline.m_tar, desc->m_polyline.m_numPoints, 0, 0, w, h, image, w, h);
+    RenderTarToScreen(desc->m_polyline.m_tar, desc->m_polyline.m_numPoints, 0, 0, w, h, image, w, h);*/
   }
   saveBitmap("tar.png", (const unsigned char*)image, w, h);
   free(image);

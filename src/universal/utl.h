@@ -55,7 +55,7 @@ typedef struct tagMatrix4x4f
 
 //////////////////////////////////////////////////////////////////////////
 
-float UtilPower(const float x, const int n)
+__inline float UtilPower(const float x, const int n)
 {
     float res; int i ;
 
@@ -69,7 +69,7 @@ float UtilPower(const float x, const int n)
     return res;
 }
 
-void  UtilV3fTransform(const V3f *v, const Matrix4x4f *matrix, V3f *vOut)
+__inline void  UtilV3fTransform(const V3f *v, const Matrix4x4f *matrix, V3f *vOut)
 {
     vOut->x = 
             v->x * matrix->m_matrix[ 0] + 
@@ -88,33 +88,33 @@ void  UtilV3fTransform(const V3f *v, const Matrix4x4f *matrix, V3f *vOut)
                    matrix->m_matrix[14];
 }
 
-void  UtilV3fAdd(const V3f *v0, const V3f *v1, V3f *vOut)
+__inline void  UtilV3fAdd(const V3f *v0, const V3f *v1, V3f *vOut)
 {
     vOut->x = v0->x + v1->x;
     vOut->y = v0->y + v1->y;
     vOut->z = v0->z + v1->z;
 }
 
-void  UtilV3fSub(const V3f *v0, const V3f *v1, V3f *vOut)
+__inline void  UtilV3fSub(const V3f *v0, const V3f *v1, V3f *vOut)
 {
     vOut->x = v0->x - v1->x;
     vOut->y = v0->y - v1->y;
     vOut->z = v0->z - v1->z;
 }
 
-void  UtilV3fScale(const V3f *v0, const float s, V3f *vOut)
+__inline void  UtilV3fScale(const V3f *v0, const float s, V3f *vOut)
 {
     vOut->x = v0->x * s;
     vOut->y = v0->y * s;
     vOut->z = v0->z * s;
 }
 
-float UtilV3fDot(const V3f *v0, const V3f *v1)
+__inline float UtilV3fDot(const V3f *v0, const V3f *v1)
 {
     return v0->x * v1->x + v0->y * v1->y + v0->z * v1->z;
 }
 
-float UtilV3fLength(const V3f *v)
+__inline float UtilV3fLength(const V3f *v)
 {
     float dot;
 
@@ -122,14 +122,14 @@ float UtilV3fLength(const V3f *v)
     return sqrtf(dot);
 }
 
-void  UtilV3fCross(const V3f *v0, const V3f *v1, V3f *vOut)
+__inline void  UtilV3fCross(const V3f *v0, const V3f *v1, V3f *vOut)
 {
     vOut->x = v0->y * v1->z - v0->z * v1->y;
     vOut->y = v0->z * v1->x - v0->x * v1->z;
     vOut->z = v0->x * v1->y - v0->y * v1->x;
 }
 
-void  UtilV3fNormalize(V3f *v)
+__inline void  UtilV3fNormalize(V3f *v)
 {
     float len = v->x * v->x + v->y * v->y + v->z * v->z;
     len = sqrtf(len);
@@ -142,13 +142,13 @@ void  UtilV3fNormalize(V3f *v)
     }
 }
 
-void  UtilV2fSub(const V2f *v0, const V2f *v1, V2f *vOut)
+__inline void  UtilV2fSub(const V2f *v0, const V2f *v1, V2f *vOut)
 {
     vOut->x = v0->x - v1->x;
     vOut->y = v0->y - v1->y;
 }
 
-void  UtilV2fNormalize(V2f *v)
+__inline void  UtilV2fNormalize(V2f *v)
 {
     float len = v->x * v->x + v->y * v->y;
     len = sqrtf(len);
@@ -159,12 +159,13 @@ void  UtilV2fNormalize(V2f *v)
         v->y *= rLen;
     }
 }
-float UtilV2fDotProduct(const V2f *v0, const V2f *v1)
+
+__inline float UtilV2fDotProduct(const V2f *v0, const V2f *v1)
 {
     return v0->x * v1->x + v0->y * v1->y;
 }
 
-float UtilV2fLength(const V2f *v)
+__inline float UtilV2fLength(const V2f *v)
 {
     float dot;
 
