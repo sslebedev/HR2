@@ -124,9 +124,9 @@ float UtilV3fLength(const V3f *v)
 
 void  UtilV3fCross(const V3f *v0, const V3f *v1, V3f *vOut)
 {
-  vOut->x = v0->y * v1->z - v0->z * v1->y;
-  vOut->y = v0->z * v1->x - v0->x * v1->z;
-  vOut->z = v0->x * v1->y - v0->y * v1->x;
+    vOut->x = v0->y * v1->z - v0->z * v1->y;
+    vOut->y = v0->z * v1->x - v0->x * v1->z;
+    vOut->z = v0->x * v1->y - v0->y * v1->x;
 }
 
 void  UtilV3fNormalize(V3f *v)
@@ -144,20 +144,20 @@ void  UtilV3fNormalize(V3f *v)
 
 void  UtilV2fSub(const V2f *v0, const V2f *v1, V2f *vOut)
 {
-  vOut->x = v0->x - v1->x;
-  vOut->y = v0->y - v1->y;
+    vOut->x = v0->x - v1->x;
+    vOut->y = v0->y - v1->y;
 }
 
 void  UtilV2fNormalize(V2f *v)
 {
-  float len = v->x * v->x + v->y * v->y;
-  len = sqrtf(len);
-  if (len > 0.0f)
-  {
-    float rLen = 1.0f / len;
-    v->x *= rLen;
-    v->y *= rLen;
-  }
+    float len = v->x * v->x + v->y * v->y;
+    len = sqrtf(len);
+    if (len > 0.0f)
+    {
+        float rLen = 1.0f / len;
+        v->x *= rLen;
+        v->y *= rLen;
+    }
 }
 float UtilV2fDotProduct(const V2f *v0, const V2f *v1)
 {
