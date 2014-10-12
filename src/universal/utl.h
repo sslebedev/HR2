@@ -7,94 +7,121 @@
 #ifndef _UTL_H_
 #define _UTL_H_
 
+//////////////////////////////////////////////////////////////////////////
+
 #define USE_PARAM(aaa) { int iii; iii = (int)(aaa); iii++; }
+
+#define IABS(a)                   (((a)>0)?(a):-(a))
+#define FABS(a)                   (((a)>0.0f)?(a):-(a))
+#define ISWAP(aa,bb)              { int ttt; ttt = (aa); (aa)=(bb); (bb)=ttt; }
+
+//////////////////////////////////////////////////////////////////////////
 
 typedef struct tagV2d
 {
-  int x, y;
+    int x, y;
 } V2d;
 
 typedef struct tagV3d
 {
-  int x, y, z;
+    int x, y, z;
 } V3d;
 
 typedef struct tagBox2d
 {
-  V2d   m_vMin, m_vMax;
-  int   m_val;
+    V2d m_vMin, m_vMax;
+    int m_val;
 } Box2d;
-
 
 typedef struct tagV2f
 {
-  float x, y;
+   float x, y;
 } V2f;
 
 typedef struct tagV3f
 {
-  float x, y, z;
+    float x, y, z;
 } V3f;
 
 typedef struct tagV4f
 {
-  float x, y, z, w;
+    float x, y, z, w;
 } V4f;
 
 typedef struct tagMatrix4x4f
 {
-  float m_matrix[16];
+    float m_matrix[16];
 } Matrix4x4f;
+
+//////////////////////////////////////////////////////////////////////////
+
+float UtilPower(const float x, const int n)
+{
+    float res; int i ;
+
+    if (n == 0)
+        return 1.0f;
+    if (n == 1)
+        return x;
+    res = x;
+    for (i = 1; i < n; i++)
+        res = res * x;
+    return res;
+}
 
 void  UtilV3fTransform(const V3f *v, const Matrix4x4f *matrix, V3f *vOut)
 {
-  vOut->x = 
+    vOut->x = 
             v->x * matrix->m_matrix[ 0] + 
             v->y * matrix->m_matrix[ 4] + 
             v->z * matrix->m_matrix[ 8] + 
                    matrix->m_matrix[12];
-  vOut->y = 
+    vOut->y = 
             v->x * matrix->m_matrix[ 1] + 
             v->y * matrix->m_matrix[ 5] + 
             v->z * matrix->m_matrix[ 9] + 
                    matrix->m_matrix[13];
-  vOut->z = 
+    vOut->z = 
             v->x * matrix->m_matrix[ 2] + 
             v->y * matrix->m_matrix[ 6] + 
             v->z * matrix->m_matrix[10] + 
                    matrix->m_matrix[14];
 }
 
-
 void  UtilV3fAdd(const V3f *v0, const V3f *v1, V3f *vOut)
 {
-  vOut->x = v0->x + v1->x;
-  vOut->y = v0->y + v1->y;
-  vOut->z = v0->z + v1->z;
+    vOut->x = v0->x + v1->x;
+    vOut->y = v0->y + v1->y;
+    vOut->z = v0->z + v1->z;
 }
+
 void  UtilV3fSub(const V3f *v0, const V3f *v1, V3f *vOut)
 {
-  vOut->x = v0->x - v1->x;
-  vOut->y = v0->y - v1->y;
-  vOut->z = v0->z - v1->z;
+    vOut->x = v0->x - v1->x;
+    vOut->y = v0->y - v1->y;
+    vOut->z = v0->z - v1->z;
 }
+
 void  UtilV3fScale(const V3f *v0, const float s, V3f *vOut)
 {
-  vOut->x = v0->x * s;
-  vOut->y = v0->y * s;
-  vOut->z = v0->z * s;
+    vOut->x = v0->x * s;
+    vOut->y = v0->y * s;
+    vOut->z = v0->z * s;
 }
+
 float UtilV3fDot(const V3f *v0, const V3f *v1)
 {
-  return v0->x * v1->x + v0->y * v1->y + v0->z * v1->z;
+    return v0->x * v1->x + v0->y * v1->y + v0->z * v1->z;
 }
+
 float UtilV3fLength(const V3f *v)
 {
-  float dot;
+    float dot;
 
-  dot = UtilV3fDot(v, v);
-  return sqrtf(dot);
+    dot = UtilV3fDot(v, v);
+    return sqrtf(dot);
 }
+
 void  UtilV3fCross(const V3f *v0, const V3f *v1, V3f *vOut)
 {
   vOut->x = v0->y * v1->z - v0->z * v1->y;
@@ -104,15 +131,15 @@ void  UtilV3fCross(const V3f *v0, const V3f *v1, V3f *vOut)
 
 void  UtilV3fNormalize(V3f *v)
 {
-  float len = v->x * v->x + v->y * v->y + v->z * v->z;
-  len = sqrtf(len);
-  if (len > 0.0f)
-  {
-    float rLen = 1.0f / len;
-    v->x *= rLen;
-    v->y *= rLen;
-    v->z *= rLen;
-  }
+    float len = v->x * v->x + v->y * v->y + v->z * v->z;
+    len = sqrtf(len);
+    if (len > 0.0f)
+    {
+        float rLen = 1.0f / len;
+        v->x *= rLen;
+        v->y *= rLen;
+        v->z *= rLen;
+    }
 }
 
 void  UtilV2fSub(const V2f *v0, const V2f *v1, V2f *vOut)
@@ -134,15 +161,15 @@ void  UtilV2fNormalize(V2f *v)
 }
 float UtilV2fDotProduct(const V2f *v0, const V2f *v1)
 {
-  return v0->x * v1->x + v0->y * v1->y;
+    return v0->x * v1->x + v0->y * v1->y;
 }
 
 float UtilV2fLength(const V2f *v)
 {
-  float dot;
+    float dot;
 
-  dot = UtilV2fDotProduct(v, v);
-  return sqrtf(dot);
+    dot = UtilV2fDotProduct(v, v);
+    return sqrtf(dot);
 }
 
 #endif
