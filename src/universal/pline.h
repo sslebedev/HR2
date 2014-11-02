@@ -1,6 +1,6 @@
 //  **********************************************************
 //  FILE NAME   pline.h
-//  PURPOSE     Polyline (contour) recognition
+//  PURPOSE     Polyline (contour) recognition - main interface
 //  NOTES
 //  **********************************************************
 

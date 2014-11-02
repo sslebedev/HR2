@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-MESSAGE(STATUS "VERSION: 0.00.14")
+message(STATUS "VERSION: 0.00.14")
 # Project settings
 set(PROJECT_NAME HR2)
 set(APP_NAME HR2)
@@ -42,20 +42,20 @@ set(SOURCE_MAIN ${SOURCE_PATH}/win/main.cpp)
 set(HEADER_UNIVERSAL ${SOURCE_PATH}/universal/xml.h
   ${SOURCE_PATH}/universal/utl.h
   ${SOURCE_PATH}/universal/raster.h
+  ${SOURCE_PATH}/universal/dbg.h
   ${SOURCE_PATH}/universal/pline.h)
 set(SOURCE_UNIVERSAL ${SOURCE_PATH}/universal/xml.c
-  ${SOURCE_PATH}/universal/raster.c
   ${SOURCE_PATH}/universal/pline.c)
 
 #-------------------------------------------------------------------------------------------
 
 #MSVC Filters
-IF (MSVC)
+if (MSVC)
   source_group("Source Files\\Win" FILES ${SOURCE_MAIN})
 
   source_group("Source Files\\Universal" FILES ${HEADER_UNIVERSAL})
   source_group("Source Files\\Universal\\c" FILES ${SOURCE_UNIVERSAL})
-ENDIF (MSVC)
+endif (MSVC)
  
 #-------------------------------------------------------------------------------------------
 
